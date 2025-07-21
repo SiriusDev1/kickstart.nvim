@@ -12,6 +12,7 @@ end)
 vim.o.breakindent = true
 -- Save undo history
 vim.o.undofile = true
+vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -25,11 +26,11 @@ vim.o.timeoutlen = 300
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
+vim.opt.guicursor = ''
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 
+vim.opt.wrap = true
 -- Show which line your cursor is on
 vim.o.cursorline = true
 
@@ -40,6 +41,9 @@ vim.o.confirm = true
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- highlighted text move
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 vim.keymap.set('n', 'x', '"_x', opts)
 vim.keymap.set('n', '<Up>', ':resize -2<CR>', opts)
